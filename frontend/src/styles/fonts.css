@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+
+:root {
+	--font-sans-premium: 'Manrope', sans-serif;
+	--font-display-premium: 'Fraunces', serif;
+}

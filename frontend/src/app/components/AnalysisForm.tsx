@@ -24,35 +24,35 @@ export function AnalysisForm({ onSubmit, isLoading = false, error }: AnalysisFor
   };
 
   return (
-    <section className="py-24 px-8 bg-[#F8F7F5]" id="analysis">
+    <section className="px-6 py-20 md:px-16" id="analysis">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-2xl mx-auto"
+        className="mx-auto max-w-3xl"
       >
-        <div className="bg-white rounded-2xl p-12 shadow-sm border border-[#0B0B0B]/5">
-          <h2 className="text-4xl text-[#0B0B0B] mb-2 text-center">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl md:p-12">
+          <h2 className="text-center text-4xl font-bold tracking-tight text-white md:text-6xl">
             Your Skin Profile
           </h2>
-          <p className="text-[#6B7280] text-center mb-10">
+          <p className="mb-10 mt-3 text-center text-lg text-gray-400">
             Help us understand your unique skin needs
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="space-y-3">
-              <label className="block text-[#111827]">Skin Type</label>
+          <form onSubmit={handleSubmit} className="space-y-10">
+            <div className="space-y-4">
+              <label className="block text-base text-gray-100">Skin Type</label>
               <div className="grid grid-cols-2 gap-3">
                 {["Oily", "Dry", "Combination", "Normal"].map((type) => (
                   <button
                     key={type}
                     type="button"
                     onClick={() => setSkinType(type)}
-                    className={`py-4 px-6 rounded-xl border transition-all duration-200 ${
+                    className={`rounded-2xl border px-6 py-4 transition-all duration-300 ease-in-out hover:-translate-y-1 ${
                       skinType === type
-                        ? "bg-[#8B9A8D] text-white border-[#8B9A8D]"
-                        : "bg-white text-[#111827] border-[#0B0B0B]/10 hover:border-[#8B9A8D]/50"
+                        ? "border-emerald-300/60 bg-gradient-to-br from-emerald-500/70 to-teal-500/70 text-white shadow-lg shadow-emerald-900/30"
+                        : "border-white/15 bg-white/5 text-gray-100 hover:border-emerald-300/40 hover:bg-white/10"
                     }`}
                   >
                     {type}
@@ -61,18 +61,18 @@ export function AnalysisForm({ onSubmit, isLoading = false, error }: AnalysisFor
               </div>
             </div>
 
-            <div className="space-y-3">
-              <label className="block text-[#111827]">Sensitivity Level</label>
+            <div className="space-y-4">
+              <label className="block text-base text-gray-100">Sensitivity Level</label>
               <div className="grid grid-cols-3 gap-3">
                 {["Low", "Medium", "High"].map((level) => (
                   <button
                     key={level}
                     type="button"
                     onClick={() => setSensitivity(level)}
-                    className={`py-4 px-6 rounded-xl border transition-all duration-200 ${
+                    className={`rounded-2xl border px-6 py-4 transition-all duration-300 ease-in-out hover:-translate-y-1 ${
                       sensitivity === level
-                        ? "bg-[#B8A9D4] text-white border-[#B8A9D4]"
-                        : "bg-white text-[#111827] border-[#0B0B0B]/10 hover:border-[#B8A9D4]/50"
+                        ? "border-emerald-300/60 bg-gradient-to-br from-emerald-500/70 to-teal-500/70 text-white shadow-lg shadow-emerald-900/30"
+                        : "border-white/15 bg-white/5 text-gray-100 hover:border-emerald-300/40 hover:bg-white/10"
                     }`}
                   >
                     {level}
@@ -81,8 +81,8 @@ export function AnalysisForm({ onSubmit, isLoading = false, error }: AnalysisFor
               </div>
             </div>
 
-            <div className="space-y-3">
-              <label className="block text-[#111827]">Primary Skin Concern</label>
+            <div className="space-y-4">
+              <label className="block text-base text-gray-100">Primary Skin Concern</label>
               <div className="grid grid-cols-2 gap-3">
                 {[
                   "Acne",
@@ -96,10 +96,10 @@ export function AnalysisForm({ onSubmit, isLoading = false, error }: AnalysisFor
                     key={concernOption}
                     type="button"
                     onClick={() => setConcern(concernOption)}
-                    className={`py-4 px-6 rounded-xl border transition-all duration-200 ${
+                    className={`rounded-2xl border px-6 py-4 transition-all duration-300 ease-in-out hover:-translate-y-1 ${
                       concern === concernOption
-                        ? "bg-[#D4806A] text-white border-[#D4806A]"
-                        : "bg-white text-[#111827] border-[#0B0B0B]/10 hover:border-[#D4806A]/50"
+                        ? "border-emerald-300/60 bg-gradient-to-br from-emerald-500/70 to-teal-500/70 text-white shadow-lg shadow-emerald-900/30"
+                        : "border-white/15 bg-white/5 text-gray-100 hover:border-emerald-300/40 hover:bg-white/10"
                     }`}
                   >
                     {concernOption}
@@ -109,11 +109,11 @@ export function AnalysisForm({ onSubmit, isLoading = false, error }: AnalysisFor
             </div>
 
             <motion.button
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.95 }}
               type="submit"
               disabled={!skinType || !sensitivity || !concern || isLoading}
-              className="w-full py-5 bg-gradient-to-r from-[#8B9A8D] to-[#A8D5BA] text-white rounded-full hover:shadow-lg transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-500 px-6 py-4 font-semibold text-white shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl hover:shadow-emerald-500/30 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
             >
               {isLoading ? (
                 <>

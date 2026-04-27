@@ -1,0 +1,24 @@
+product_name,brand,skin_type,sensitivity,concern,ingredients,price,image_url,product_url,description
+Niacinamide 10% + Zinc 1%,The Ordinary,Oily,Low,Acne,niacinamide zinc,12,https://theordinary.com/image1.jpg,https://theordinary.com/product/niacinamide-10-zinc-1,Controls oil and reduces acne
+Salicylic Acid Cleanser,CeraVe,Oily,Medium,Acne,salicylic acid ceramides,15,https://cerave.com/image1.jpg,https://cerave.com/product/sa-cleanser,Exfoliating cleanser for acne-prone skin
+Effaclar Duo+,La Roche-Posay,Oily,High,Acne,benzoyl peroxide niacinamide,20,https://larocheposay.com/image1.jpg,https://larocheposay.com/product/effaclar-duo,Treatment for severe acne
+Oil Control Toner,Paula's Choice,Oily,Low,Acne,niacinamide green tea,18,https://paulaschoice.com/image1.jpg,https://paulaschoice.com/product/oil-control-toner,Reduces pore size and oil
+Acne Control Serum,Minimalist,Oily,Medium,Acne,salicylic acid zinc,10,https://minimalist.com/image1.jpg,https://minimalist.com/product/acne-serum,Lightweight acne serum
+
+Hyaluronic Acid Serum,The Ordinary,Dry,Low,Dullness,hyaluronic acid,14,https://theordinary.com/image2.jpg,https://theordinary.com/product/hyaluronic-acid,Deep hydration serum
+Moisturizing Cream,CeraVe,Dry,High,Dullness,ceramides hyaluronic acid,16,https://cerave.com/image2.jpg,https://cerave.com/product/moisturizing-cream,Restores skin barrier
+Hydrating Serum,Neutrogena,Dry,Medium,Dullness,hyaluronic acid glycerin,13,https://neutrogena.com/image1.jpg,https://neutrogena.com/product/hydro-boost,Boosts hydration
+Intense Moisturizer,Aveeno,Dry,High,Dullness,oat extract glycerin,17,https://aveeno.com/image1.jpg,https://aveeno.com/product/moisturizer,Soothes dry skin
+Dry Skin Repair Cream,Eucerin,Dry,Medium,Dullness,urea ceramides,19,https://eucerin.com/image1.jpg,https://eucerin.com/product/repair-cream,Repairs very dry skin
+
+Vitamin C Serum,Skinceuticals,Normal,Low,Dark Spots,vitamin c ferulic acid,160,https://skinceuticals.com/image1.jpg,https://skinceuticals.com/product/c-e-ferulic,Brightens and reduces pigmentation
+Brightening Serum,Minimalist,Normal,Medium,Dark Spots,vitamin c alpha arbutin,20,https://minimalist.com/image2.jpg,https://minimalist.com/product/vitamin-c-serum,Improves skin tone
+Pigment Corrector,La Roche-Posay,Normal,High,Dark Spots,niacinamide lha,25,https://larocheposay.com/image2.jpg,https://larocheposay.com/product/pigmentclar,Targets discoloration
+Glow Serum,Olay,Normal,Low,Dark Spots,vitamin c niacinamide,30,https://olay.com/image1.jpg,https://olay.com/product/glow-serum,Enhances radiance
+Dark Spot Corrector,Neutrogena,Normal,Medium,Dark Spots,retinol vitamin c,22,https://neutrogena.com/image2.jpg,https://neutrogena.com/product/dark-spot,Reduces pigmentation
+
+Gentle Cleanser,Cetaphil,Sensitive,High,Redness,aloe glycerin,12,https://cetaphil.com/image1.jpg,https://cetaphil.com/product/gentle-cleanser,Soothing cleanser for sensitive skin
+Calming Cream,Avene,Sensitive,High,Redness,thermal water ceramides,18,https://avene.com/image1.jpg,https://avene.com/product/calming-cream,Reduces redness
+Anti-Redness Serum,La Roche-Posay,Sensitive,High,Redness,niacinamide neurosensine,28,https://larocheposay.com/image3.jpg,https://larocheposay.com/product/rosaliac,Calms irritation
+Soothing Gel,Minimalist,Sensitive,Medium,Redness,panthenol aloe,10,https://minimalist.com/image3.jpg,https://minimalist.com/product/soothing-gel,Cools irritated skin
+Redness Relief Cream,Eucerin,Sensitive,High,Redness,licochalcone,20,https://eucerin.com/image2.jpg,https://eucerin.com/product/redness-relief,Improves redness

@@ -1,54 +1,43 @@
 import { motion } from "motion/react";
+import { generateRoutine } from "../../utils/routineGenerator";
 
 interface RoutineBuilderProps {
   skinType?: string;
   sensitivity?: string;
   concern?: string;
+  ingredients?: string;
 }
 
-const routineSteps = [
-  {
-    time: "AM",
-    steps: [
-      { order: 1, name: "Gentle Cleanser", duration: "1 min" },
-      { order: 2, name: "Niacinamide Serum", duration: "30 sec" },
-      { order: 3, name: "Hyaluronic Acid", duration: "30 sec" },
-      { order: 4, name: "Moisturizer", duration: "1 min" },
-      { order: 5, name: "SPF 50", duration: "1 min" },
-    ],
-  },
-  {
-    time: "PM",
-    steps: [
-      { order: 1, name: "Oil Cleanser", duration: "2 min" },
-      { order: 2, name: "Water-Based Cleanser", duration: "1 min" },
-      { order: 3, name: "Retinol Treatment", duration: "30 sec" },
-      { order: 4, name: "Night Cream", duration: "1 min" },
-    ],
-  },
-];
+export function RoutineBuilder({ skinType, sensitivity, concern, ingredients }: RoutineBuilderProps) {
+  const routine = generateRoutine({
+    skinType: skinType ?? "Normal",
+    concern: concern ?? "Acne",
+    sensitivity: sensitivity ?? "Low",
+    ingredients: ingredients ?? "",
+  });
 
-export function RoutineBuilder({ skinType, sensitivity, concern }: RoutineBuilderProps) {
-  // TODO: Call API to fetch personalized routine based on skinType, sensitivity, concern
-  // For now, using static routine
+  const routineSteps = [
+    { time: "AM", steps: routine.AM },
+    { time: "PM", steps: routine.PM },
+  ];
   
   return (
-    <section className="py-24 px-8 bg-white">
+    <section className="px-6 py-20 md:px-16">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-5xl mx-auto"
+        className="mx-auto max-w-5xl"
       >
-        <h2 className="text-5xl text-[#0B0B0B] mb-4 text-center">
+        <h2 className="mb-4 text-center text-4xl font-bold tracking-tight text-white md:text-6xl">
           Your Daily Routine
         </h2>
-        <p className="text-[#6B7280] text-center mb-16 max-w-2xl mx-auto">
+        <p className="mx-auto mb-16 max-w-2xl text-center text-lg text-gray-400">
           A science-backed skincare routine tailored to your profile
         </p>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid gap-8 md:grid-cols-2 md:gap-12">
           {routineSteps.map((routine, routineIndex) => (
             <motion.div
               key={routine.time}
@@ -56,17 +45,17 @@ export function RoutineBuilder({ skinType, sensitivity, concern }: RoutineBuilde
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-[#F8F7F5] rounded-2xl p-10 border border-[#0B0B0B]/5"
+              className="rounded-2xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl md:p-10"
             >
               <div className="flex items-center gap-3 mb-8">
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white ${
+                <div className={`flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold text-white ${
                   routine.time === "AM"
-                    ? "bg-gradient-to-br from-[#F5C7A9] to-[#D4806A]"
-                    : "bg-gradient-to-br from-[#B8A9D4] to-[#8B9A8D]"
+                    ? "bg-gradient-to-br from-amber-300 to-orange-500"
+                    : "bg-gradient-to-br from-indigo-400 to-teal-500"
                 }`}>
                   {routine.time}
                 </div>
-                <h3 className="text-2xl text-[#0B0B0B]">
+                <h3 className="text-2xl font-semibold text-white">
                   {routine.time === "AM" ? "Morning" : "Evening"} Routine
                 </h3>
               </div>
@@ -79,18 +68,19 @@ export function RoutineBuilder({ skinType, sensitivity, concern }: RoutineBuilde
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 + stepIndex * 0.1 }}
-                    className="flex items-start gap-4 group"
+                    className="group flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 px-3 py-3 transition-all duration-300 ease-in-out hover:-translate-y-1"
                   >
-                    <div className={`flex-shrink-0 w-8 h-8 rounded-full bg-white border flex items-center justify-center text-sm text-[#0B0B0B] transition-all duration-300 ${
+                    <div className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border text-sm text-white transition-all duration-300 ${
                       routineIndex === 0
-                        ? "border-[#D4806A]/20 group-hover:bg-gradient-to-br group-hover:from-[#F5C7A9] group-hover:to-[#D4806A] group-hover:text-white group-hover:border-transparent"
-                        : "border-[#B8A9D4]/20 group-hover:bg-gradient-to-br group-hover:from-[#B8A9D4] group-hover:to-[#8B9A8D] group-hover:text-white group-hover:border-transparent"
+                        ? "border-amber-300/40 bg-amber-400/20 group-hover:border-transparent group-hover:bg-gradient-to-br group-hover:from-amber-300 group-hover:to-orange-500"
+                        : "border-teal-300/40 bg-teal-400/20 group-hover:border-transparent group-hover:bg-gradient-to-br group-hover:from-indigo-400 group-hover:to-teal-500"
                     }`}>
-                      {step.order}
+                      {stepIndex + 1}
                     </div>
                     <div className="flex-1 pt-1">
-                      <p className="text-[#0B0B0B] mb-1">{step.name}</p>
-                      <p className="text-sm text-[#6B7280]">{step.duration}</p>
+                      <p className="mb-1 text-white">{step.step}</p>
+                      <div className="h-px w-full bg-white/10" />
+                      <p className="mt-2 text-sm text-gray-400">{step.note}</p>
                     </div>
                   </motion.div>
                 ))}

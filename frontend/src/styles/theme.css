@@ -132,6 +132,16 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans-premium);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display-premium);
   }
 
   /**

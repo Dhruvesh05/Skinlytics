@@ -1,9 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.routes import predict, recommend, routine
+from backend.database import Base, engine
+from backend import models
+from backend.routes import auth, history, predict, profile, recommend, routine
 
 app = FastAPI(title="Skinlytix API", version="1.0")
+
+
+Base.metadata.create_all(bind=engine)
 
 
 # Allow React frontend to connect
@@ -36,3 +41,6 @@ def health():
 app.include_router(predict.router, prefix="/api")
 app.include_router(recommend.router, prefix="/api")
 app.include_router(routine.router, prefix="/api")
+app.include_router(auth.router, prefix="/auth", tags=["Auth"])
+app.include_router(profile.router, tags=["Profile"])
+app.include_router(history.router, tags=["History"])

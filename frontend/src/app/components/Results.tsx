@@ -7,33 +7,38 @@ interface ResultsProps {
 }
 
 export function Results({ ingredient, cluster, confidence }: ResultsProps) {
+  const safeConfidence = Math.min(100, Math.max(0, confidence));
+
   return (
-    <section className="py-24 px-8 bg-white">
+    <section className="px-6 py-20 md:px-16">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-6xl mx-auto"
+        className="mx-auto max-w-6xl rounded-3xl border border-white/10 bg-black/30 px-6 py-12 shadow-2xl backdrop-blur-xl md:px-10"
       >
-        <h2 className="text-5xl text-[#0B0B0B] mb-16 text-center">
+        <h2 className="mb-4 text-center text-4xl font-bold tracking-tight text-white md:text-6xl">
           Your Personalized Results
         </h2>
+        <p className="mx-auto mb-14 max-w-2xl text-center text-lg text-gray-400">
+          A targeted recommendation built from your skin profile, sensitivity, and concern pattern.
+        </p>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             whileHover={{ y: -4 }}
-            className="bg-gradient-to-br from-[#F5C7A9]/20 to-[#F5C7A9]/5 rounded-2xl p-10 border border-[#D4806A]/20 transition-all duration-300"
+            className="rounded-2xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
           >
-            <p className="text-sm text-[#6B7280] mb-3 uppercase tracking-wider">
+            <p className="mb-3 text-sm uppercase tracking-wider text-gray-400">
               Recommended Ingredient
             </p>
-            <h3 className="text-3xl text-[#0B0B0B] mb-4">{ingredient}</h3>
-            <p className="text-[#6B7280] leading-relaxed">
+            <h3 className="mb-4 text-3xl font-semibold text-white">{ingredient}</h3>
+            <p className="leading-relaxed text-gray-300">
               AI-selected active ingredient optimized for your unique skin profile
             </p>
           </motion.div>
@@ -44,15 +49,15 @@ export function Results({ ingredient, cluster, confidence }: ResultsProps) {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             whileHover={{ y: -4 }}
-            className="bg-gradient-to-br from-[#A8D5BA]/20 to-[#A8D5BA]/5 rounded-2xl p-10 border border-[#8B9A8D]/20 transition-all duration-300"
+            className="rounded-2xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
           >
-            <p className="text-sm text-[#6B7280] mb-3 uppercase tracking-wider">
+            <p className="mb-3 text-sm uppercase tracking-wider text-gray-400">
               Skin Profile
             </p>
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8B9A8D] to-[#A8D5BA] text-white px-5 py-2 rounded-full mb-4">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-500 px-5 py-2 text-white shadow-lg shadow-emerald-900/30">
               <span>{cluster}</span>
             </div>
-            <p className="text-[#6B7280] leading-relaxed">
+            <p className="leading-relaxed text-gray-300">
               Your skin falls into this scientifically-backed profile cluster
             </p>
           </motion.div>
@@ -63,27 +68,27 @@ export function Results({ ingredient, cluster, confidence }: ResultsProps) {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
             whileHover={{ y: -4 }}
-            className="bg-gradient-to-br from-[#B8A9D4]/20 to-[#B8A9D4]/5 rounded-2xl p-10 border border-[#B8A9D4]/20 transition-all duration-300"
+            className="rounded-2xl border border-emerald-300/20 bg-gradient-to-br from-emerald-500/10 via-white/5 to-teal-500/10 p-8 shadow-xl shadow-emerald-900/20 backdrop-blur-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl hover:shadow-emerald-500/25"
           >
-            <p className="text-sm text-[#6B7280] mb-3 uppercase tracking-wider">
+            <p className="mb-3 text-sm uppercase tracking-wider text-gray-300">
               Confidence Score
             </p>
             <div className="mb-4">
               <div className="flex items-baseline gap-2">
-                <span className="text-5xl text-[#0B0B0B]">{confidence}</span>
-                <span className="text-2xl text-[#6B7280]">%</span>
+                <span className="text-5xl font-semibold text-white">{safeConfidence}</span>
+                <span className="text-2xl text-gray-300">%</span>
               </div>
-              <div className="mt-4 h-2 bg-[#E8E6E1] rounded-full overflow-hidden">
+              <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/15">
                 <motion.div
                   initial={{ width: 0 }}
-                  whileInView={{ width: `${confidence}%` }}
+                  whileInView={{ width: `${safeConfidence}%` }}
                   viewport={{ once: true }}
                   transition={{ duration: 1, delay: 0.5 }}
-                  className="h-full bg-gradient-to-r from-[#B8A9D4] to-[#D4806A] rounded-full"
+                  className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-500"
                 />
               </div>
             </div>
-            <p className="text-[#6B7280] leading-relaxed">
+            <p className="leading-relaxed text-gray-300">
               ML model prediction accuracy for this recommendation
             </p>
           </motion.div>

@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell } from "recharts";
+import { Bar, BarChart, Cell, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
 const dataPoints = [
   { name: "Niacinamide", value: 94 },
@@ -29,27 +29,27 @@ const insights = [
 
 export function Insights() {
   return (
-    <section className="py-24 px-8 bg-[#F8F7F5]">
+    <section className="px-6 py-20 md:px-16">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-6xl mx-auto"
+        className="mx-auto max-w-6xl"
       >
-        <h2 className="text-5xl text-[#0B0B0B] mb-4 text-center">
+        <h2 className="mb-4 text-center text-4xl font-bold tracking-tight text-white md:text-6xl">
           Data-Driven Insights
         </h2>
-        <p className="text-[#6B7280] text-center mb-16 max-w-2xl mx-auto">
+        <p className="mx-auto mb-16 max-w-2xl text-center text-lg text-gray-400">
           Advanced analytics powering your personalized recommendations
         </p>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="mb-12 grid gap-6 md:grid-cols-3">
           {insights.map((insight, index) => {
             const gradients = [
-              "from-[#8B9A8D]/10 to-[#A8D5BA]/10 border-[#8B9A8D]/20",
-              "from-[#D4806A]/10 to-[#F5C7A9]/10 border-[#D4806A]/20",
-              "from-[#B8A9D4]/10 to-[#B8A9D4]/10 border-[#B8A9D4]/20"
+              "from-emerald-500/20 via-white/5 to-teal-500/20 border-emerald-300/20",
+              "from-orange-500/20 via-white/5 to-amber-400/20 border-orange-300/20",
+              "from-indigo-500/20 via-white/5 to-cyan-400/20 border-indigo-300/20"
             ];
             return (
               <motion.div
@@ -58,13 +58,13 @@ export function Insights() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`bg-gradient-to-br ${gradients[index]} rounded-2xl p-8 border`}
+                className={`rounded-2xl border bg-gradient-to-br ${gradients[index]} p-8 shadow-xl backdrop-blur-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl`}
               >
-                <p className="text-sm text-[#6B7280] mb-2 uppercase tracking-wider">
+                <p className="mb-2 text-sm uppercase tracking-wider text-gray-300">
                   {insight.metric}
                 </p>
-                <p className="text-4xl text-[#0B0B0B] mb-2">{insight.value}</p>
-                <p className="text-sm text-[#6B7280]">{insight.description}</p>
+                <p className="mb-2 text-4xl font-semibold text-white">{insight.value}</p>
+                <p className="text-sm text-gray-300">{insight.description}</p>
               </motion.div>
             );
           })}
@@ -75,9 +75,12 @@ export function Insights() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="bg-white rounded-2xl p-10 border border-[#0B0B0B]/5"
+          className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur-xl md:p-10"
         >
-          <h3 className="text-2xl text-[#0B0B0B] mb-8">
+          <p className="mb-2 text-xs uppercase tracking-[0.2em] text-gray-400">
+            Performance Overview
+          </p>
+          <h3 className="mb-8 text-3xl font-semibold text-white">
             Ingredient Match Scores
           </h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -86,16 +89,16 @@ export function Insights() {
                 dataKey="name"
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#6B7280", fontSize: 14 }}
+                tick={{ fill: "#D1D5DB", fontSize: 14 }}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#6B7280", fontSize: 14 }}
+                tick={{ fill: "#D1D5DB", fontSize: 14 }}
               />
               <Bar dataKey="value" radius={[8, 8, 0, 0]}>
                 {dataPoints.map((entry, index) => {
-                  const colors = ["#8B9A8D", "#D4806A", "#B8A9D4", "#A8D5BA", "#F5C7A9"];
+                  const colors = ["#34D399", "#14B8A6", "#60A5FA", "#A78BFA", "#F59E0B"];
                   return (
                     <Cell
                       key={`cell-${entry.name}-${index}`}
