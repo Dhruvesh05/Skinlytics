@@ -1,9 +1,9 @@
 import { motion } from "motion/react";
 import {
-    buildProductImageDataUri,
     getRankedRecommendations,
     type RankedProduct,
 } from "../../utils/productCatalog";
+import { generateProductRecommendationLink } from "../../utils/linkGenerator";
 
 interface ProductRecommendationsProps {
   ingredient?: string;
@@ -33,8 +33,12 @@ export function ProductRecommendations({ ingredient, concern, skinType, sensitiv
   const showBestPossibleMessage = products.length > 0 && !hasStrongMatch;
 
   const renderProductCard = (product: RankedProduct, index: number) => {
-    const productUrl = product.product_url?.trim();
-    const hasProductUrl = Boolean(productUrl && productUrl !== "#");
+    // Always use Google search link
+    const googleSearchLink = generateProductRecommendationLink(
+      product.product_name,
+      concern,
+      product.brand
+    );
 
     const cardContent = (
       <motion.div
@@ -44,19 +48,14 @@ export function ProductRecommendations({ ingredient, concern, skinType, sensitiv
         viewport={{ once: true }}
         transition={{ delay: index * 0.1 }}
         whileHover={{ y: -6 }}
-        className={`group overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-xl backdrop-blur-xl transition-all duration-300 ease-in-out ${
-          hasProductUrl
-            ? "cursor-pointer hover:-translate-y-1 hover:scale-105 hover:shadow-2xl"
-            : "cursor-not-allowed"
-        }`}
+        className="group overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-xl backdrop-blur-xl transition-all duration-300 ease-in-out cursor-pointer hover:-translate-y-1 hover:scale-105 hover:shadow-2xl"
       >
-        <div className="relative aspect-square overflow-hidden bg-slate-900/40">
-          <img
-            src={product.image_url || buildProductImageDataUri(product.product_name, product.brand)}
-            alt={product.product_name}
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-          />
+        <div className="relative aspect-square overflow-hidden bg-slate-900/40 flex items-center justify-center">
+          <div className="text-6xl">🔍</div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+          <div className="absolute top-3 right-3 rounded-full bg-blue-500/80 px-2 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+            🔍 Google
+          </div>
         </div>
         <div className="p-6">
           <p className="mb-1 text-sm text-gray-400">{product.brand}</p>
@@ -65,27 +64,21 @@ export function ProductRecommendations({ ingredient, concern, skinType, sensitiv
           {formatPrice(product.price) && (
             <p className="font-semibold text-emerald-300">{formatPrice(product.price)}</p>
           )}
-          {!hasProductUrl && (
-            <p className="mt-3 text-xs uppercase tracking-widest text-gray-500">
-              Link unavailable
-            </p>
-          )}
+          <p className="mt-3 text-xs uppercase tracking-widest text-blue-300">
+            Click to search on Google
+          </p>
         </div>
       </motion.div>
     );
 
-    if (!hasProductUrl) {
-      return cardContent;
-    }
-
     return (
       <a
         key={product.id}
-        href={productUrl}
+        href={googleSearchLink}
         target="_blank"
         rel="noopener noreferrer"
         className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-        aria-label={`Open ${product.product_name} in a new tab`}
+        aria-label={`Search for ${product.product_name} on Google`}
       >
         {cardContent}
       </a>

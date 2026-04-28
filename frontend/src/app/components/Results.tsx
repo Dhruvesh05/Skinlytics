@@ -1,13 +1,16 @@
 import { motion } from "motion/react";
+import { getIngredientLink } from "../../utils/linkGenerator";
 
 interface ResultsProps {
   ingredient: string;
   cluster: string;
   confidence: number;
+  skinType?: string;
 }
 
-export function Results({ ingredient, cluster, confidence }: ResultsProps) {
+export function Results({ ingredient, cluster, confidence, skinType }: ResultsProps) {
   const safeConfidence = Math.min(100, Math.max(0, confidence));
+  const ingredientSearchLink = getIngredientLink(ingredient, skinType);
 
   return (
     <section className="px-6 py-20 md:px-16">
@@ -26,22 +29,33 @@ export function Results({ ingredient, cluster, confidence }: ResultsProps) {
         </p>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            whileHover={{ y: -4 }}
-            className="rounded-2xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl"
+          <a
+            href={ingredientSearchLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded-2xl"
+            aria-label={`Search for ${ingredient} on Google`}
           >
-            <p className="mb-3 text-sm uppercase tracking-wider text-gray-400">
-              Recommended Ingredient
-            </p>
-            <h3 className="mb-4 text-3xl font-semibold text-white">{ingredient}</h3>
-            <p className="leading-relaxed text-gray-300">
-              AI-selected active ingredient optimized for your unique skin profile
-            </p>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              whileHover={{ y: -4 }}
+              className="rounded-2xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-2xl cursor-pointer"
+            >
+              <p className="mb-3 text-sm uppercase tracking-wider text-gray-400">
+                Recommended Ingredient
+              </p>
+              <h3 className="mb-4 text-3xl font-semibold text-white group-hover:text-emerald-300 transition-colors">{ingredient}</h3>
+              <p className="leading-relaxed text-gray-300">
+                AI-selected active ingredient optimized for your unique skin profile
+              </p>
+              <p className="mt-4 text-xs uppercase tracking-widest text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                🔍 Click to learn more
+              </p>
+            </motion.div>
+          </a>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

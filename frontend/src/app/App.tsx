@@ -135,6 +135,7 @@ function HomePage() {
             ingredient={analysisData.ingredient}
             cluster={analysisData.cluster}
             confidence={analysisData.confidence}
+            skinType={formData.skinType}
           />
           <ProductRecommendations
             ingredient={analysisData.ingredient}
